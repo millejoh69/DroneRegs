@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map with Leaflet</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        /* Set the size of the map container */
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- JavaScript to Initialize the Map -->
+    <script>
+        // Initialize the map and set its view to a chosen geographical location and zoom level
+        var map = L.map('map').setView([20, 0], 2); // Center map on the equator with a zoom level of 2
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18, // Maximum zoom level
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add a marker for demonstration (Optional)
+        var marker = L.marker([51.5, -0.09]).addTo(map); // Coordinates for London
+        marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
+        // Add a click event to show coordinates (Optional)
+        function onMapClick(e) {
+            alert("You clicked the map at " + e.latlng);
+        }
+
+        map.on('click', onMapClick);
+    </script>
+</body>
+</html>
+
